@@ -94,7 +94,17 @@ public class JournalEntryController {
                 return new ResponseEntity<>(old, HttpStatus.OK);
             }
         }
+
+
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 }
+
+
+
+
+
+
+
+
