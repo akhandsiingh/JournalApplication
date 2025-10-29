@@ -1,8 +1,6 @@
 package com.example.AkSB.service;
 
-import com.example.AkSB.JournalEntryRepository.JournalEntryRepository;
 import com.example.AkSB.JournalEntryRepository.UserRepository;
-import com.example.AkSB.entity.JournalEntry;
 import com.example.AkSB.entity.User;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +17,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
     private static final PasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
-    public void saveEntry(User user){
+    public void saveUser(User user){
        userRepository.save(user);
     }
 
