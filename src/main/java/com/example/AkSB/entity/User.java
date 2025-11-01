@@ -28,6 +28,6 @@ public class User {
         private String password;
         @DBRef//creating reference of users collection journal entries
         private List<JournalEntry> journalEntries=new ArrayList<>();
-        private List<String> roles;
+        private List<String> roles = new ArrayList<>();
 
 }
