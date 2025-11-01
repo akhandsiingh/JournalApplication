@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 @Component
@@ -26,6 +27,11 @@ public class UserService {
         user.setRoles(Arrays.asList("USER")) ;
         userRepository.save(user);
     }
+    public void saveAdmin(User user){
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRoles(Arrays.asList("USER","ADMIN")) ;
+        userRepository.save(user);
+    }
     public List<User> getAll(){
         return userRepository.findAll();
     }
@@ -38,4 +44,5 @@ public class UserService {
     public User findByUserName(String userName){
         return userRepository.findByUserName(userName);
     }
+
 }
