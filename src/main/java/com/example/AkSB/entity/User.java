@@ -1,7 +1,6 @@
 package com.example.AkSB.entity;
 
-import lombok.Data;
-import lombok.NonNull;
+import lombok.*;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -16,6 +15,9 @@ import java.util.List;
 //@Getter
 //@Setter
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 
 public class User {
 
@@ -24,6 +26,8 @@ public class User {
         @Indexed(unique = true)//indexing on username
         @NonNull
         private String userName;
+        private  String email;
+        private boolean sentimentAnalysis;
         @NonNull
         private String password;
         @DBRef//creating reference of users collection journal entries
