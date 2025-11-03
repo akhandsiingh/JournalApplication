@@ -14,11 +14,21 @@ public class WeatherService {
 
     @Autowired
     private RestTemplate restTemplate;
+    @Autowired
+    private RedisService redisService;
     public static final String API = "http://api.weatherstack.com/current?access_key=API_KEY&query=CITY";
      public WeatherResponse getWeather(String city){
-         String finalAPI=API.replace("CITY",city).replace("API_KEY",apiKey);
-         ResponseEntity<WeatherResponse> response = restTemplate.exchange(finalAPI, HttpMethod.GET, null, WeatherResponse.class);
-         WeatherResponse body=response.getBody();
-         return body;
+         WeatherResponse weatherResponse = redisService.get("weather_of_" + city, WeatherResponse.class);
+         if(weatherResponse!=null){
+             return weatherResponse;
+         }else {
+             String finalAPI = API.replace("CITY", city).replace("API_KEY", apiKey);
+             ResponseEntity<WeatherResponse> response = restTemplate.exchange(finalAPI, HttpMethod.GET, null, WeatherResponse.class);
+             WeatherResponse body = response.getBody();
+             if(body!=null) {
+                 redisService.set("weather_of_"+city, body, 300L);
+             }
+             return body;
+         }
      }
 }
