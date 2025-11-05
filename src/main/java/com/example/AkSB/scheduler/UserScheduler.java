@@ -50,7 +50,7 @@ public class UserScheduler {
                     try {
                         kafkaTemplate.send("weekly-sentiments", sentimentData.getEmail(), sentimentData);
                     } catch (Exception e) {
-                        emailService.sendEmail(sentimentData.getEmail(), "Sentiment for previous week", sentimentData.getSentiment());
+                        emailService.sendEmail(sentimentData.getEmail(), "Sentiment for previous week", sentimentData.getSentiment());//fallBAck Kafka
                     }
                 }
             }
