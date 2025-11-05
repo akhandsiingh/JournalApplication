@@ -44,10 +44,14 @@ public class UserScheduler {
                         mostFrequentSentiment=entry.getKey();
                     }
                 }
-                if(mostFrequentSentiment!=null){
+                if(mostFrequentSentiment!=null) {
 //                    emailService.sendEmail(user.getEmail(),"Sentiment for last Seven Days",mostFrequentSentiment.toString());
-                    SentimentData sentimentData=SentimentData.builder().email(user.getEmail()).sentiment("Sentiment for last Seven Days"+mostFrequentSentiment).build();
-                    kafkaTemplate.send("weekly-sentiments",sentimentData.getEmail(),sentimentData);
+                    SentimentData sentimentData =SentimentData.builder().email(user.getEmail()).sentiment("Sentiment for last Seven Days" + mostFrequentSentiment).build();;
+                    try {
+                        kafkaTemplate.send("weekly-sentiments", sentimentData.getEmail(), sentimentData);
+                    } catch (Exception e) {
+                        emailService.sendEmail(sentimentData.getEmail(), "Sentiment for previous week", sentimentData.getSentiment());
+                    }
                 }
             }
 
