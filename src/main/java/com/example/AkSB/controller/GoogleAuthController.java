@@ -88,7 +88,7 @@ public class GoogleAuthController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 
         } catch (Exception e) {
-            log.error("Exception occurred while handleGoogleCallback ", e);
+            log.error("Exception occurred while handleGoogle ", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
