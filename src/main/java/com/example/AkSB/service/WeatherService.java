@@ -18,7 +18,7 @@ public class WeatherService {
     private RedisService redisService;
     public static final String API = "http://api.weatherstack.com/current?access_key=API_KEY&query=CITY";
      public WeatherResponse getWeather(String city){
-         WeatherResponse weatherResponse = redisService.get("weather_of_ " + city, WeatherResponse.class);
+         WeatherResponse weatherResponse = redisService.get("weather_of_" + city, WeatherResponse.class);
          if(weatherResponse!=null){
              return weatherResponse;
          }else {
