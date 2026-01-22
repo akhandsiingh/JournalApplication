@@ -12,7 +12,7 @@ public class UserArgumentsProvider implements ArgumentsProvider {
     public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) throws Exception {
         return Stream.of(
                 Arguments.of(User.builder().userName("").password("").build()),
-                Arguments.of(User.builder().userName("ededed").password("").build())
+                Arguments.of(User.builder().userName("").password("").build())
         );
     }
 }
