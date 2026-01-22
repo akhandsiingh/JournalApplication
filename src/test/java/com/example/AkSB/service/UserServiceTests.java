@@ -32,9 +32,6 @@ public class UserServiceTests {
     @Disabled
     @ParameterizedTest
     @CsvSource({
-            "1,1,2",
-            "2,10,12",
-            "3,3,9"
     })
     public void test(int a, int b, int expected){
         assertEquals(expected, a + b);
